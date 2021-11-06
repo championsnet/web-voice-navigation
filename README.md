@@ -17,7 +17,7 @@ Digital Innovation, Medical School of Aristotle University of Thessaloniki.
 
 Upload folder on server.
 Replace all links in webSpeech.html with the proper path if needed.
-Insert either the webSpeech.html file or the code inside after the <body> tag of the website.
+Insert either the webSpeech.html file or the code inside after the body tag of the website.
 Modify commands.json file accorting to your needs.
 
 ------------------------------------------
@@ -26,27 +26,47 @@ Modify commands.json file accorting to your needs.
 Commands are placed inside the commands.json file and are separated by language of voice recognition.
 The template format is:
 
+
 commands = {
-  "<<language-code-1>>": [
-    {
-      "command": "<<word(s)-for-command>>",
-      "action": "<<action-type>>",
-      "directions": "<<where-to-go>>"
-    }
-  ]	
-	"<<language-code-2>>": [
-    {
-      "command": "<<word(s)-for-command>>",
-      "action": "<<action-type>>",
-      "directions": "<<where-to-go>>"
-    }
-  ]
+	
+	"--language-code-1--": [
+	
+    	{
+		
+        	"command": "--word(s)-for-command--",
+			
+        	"action": "--action-type--",
+			
+        	"directions": "--where-to-go--"
+			
+    	}
+		
+	],
+	
+	"--language-code-2--": [
+	
+    	{
+		
+    	"command": "--word(s)-for-command--",
+		
+    	"action": "--action-type--",
+		
+    	"directions": "--where-to-go--"
+		
+    	}
+		
+  	]
+	
 }
 
-<<language-code>>: language code for recognizing voide i.e. "en-GB" or "el"
-<<word(s)-for-command>>: words the user needs to speek to activate the command
-<<action-type>>: As of now, only "link" type actions are supported
-<<where-to-go>>: The full link where the system needs to navigate for the selected command
+
+--language-code--: language code for recognizing voide i.e. "en-GB" or "el"
+	
+--word(s)-for-command--: words the user needs to speek to activate the command
+	
+--action-type--: As of now, only "link" type actions are supported
+	
+--where-to-go--: The full link where the system needs to navigate for the selected command
 
 ------------------------------------------
 3. Feedback
