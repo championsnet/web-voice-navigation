@@ -18,7 +18,7 @@ Digital Innovation, Medical School of Aristotle University of Thessaloniki.
 Upload /build/static folder to your server and add these two lines of code to your ```<head>```: 
 ```HTML
 <script defer="defer" src="path-to/static/js/main.{xyzxyzxy}.js"></script>
-<link href="path-to/static/css/main.{abcabcab.css}" rel="stylesheet">
+<link href="path-to/static/css/main.{abcabcab}.css" rel="stylesheet">
 ```
 
 ------------------------------------------
@@ -30,4 +30,4 @@ Commands are detected by gathering all textContent of a elements. Voice input is
 3. Feedback
 
 Please do not hesitate to send your feedback to vaggelisstam@gmail.com or at the github project:
-https://github.com/championsnet/web-voice-navigation
+https://github.com/championsnet/web-voice-navigation/tree/react
