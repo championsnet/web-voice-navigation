@@ -1,0 +1,39 @@
+.voice-nav-container {
+    background-color: rgba(0, 0, 0, 0);
+    position: fixed;
+    z-index: 9999999999;
+    overflow: initial;
+    transform: none;
+}
+
+#voice-nav {
+    background: #003d68 !important;
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
+    height: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    box-sizing: content-box !important;
+    padding: 3px;
+    border-radius: 50% !important;
+    border-color: rgb(255, 255, 255);
+    border-width: 0px;
+    position: fixed !important;
+    right: auto;
+    left: 13px;
+    top: auto;
+    bottom: 68px;
+    transition: .1s;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#voice-nav:hover {
+    border-color: rgb(255, 255, 255);
+    transform: scale(1.1);
+}
+
+#voice-nav .voice-nav-img {
+    border-radius: 50%;
+}
