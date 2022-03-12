@@ -15,10 +15,11 @@ Digital Innovation, Medical School of Aristotle University of Thessaloniki.
 ------------------------------------------
 1. Preparation
 
-Upload /build/static folder to your server and add these two lines of code to your <head>: 
-
-<script defer="defer" src="absolute-link-to/static/js/main.{xyzxyzxy}.js"></script>
-<link href="/static/css/main.{abcabcab.css}" rel="stylesheet">
+Upload /build/static folder to your server and add these two lines of code to your ```<head>```: 
+```HTML
+<script defer="defer" src="path-to/static/js/main.{xyzxyzxy}.js"></script>
+<link href="path-to/static/css/main.{abcabcab.css}" rel="stylesheet">
+```
 
 ------------------------------------------
 2. Commands
