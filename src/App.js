@@ -13,14 +13,23 @@ class App extends React.Component {
       active : false,
       status : "Awaiting Command...",
       words : "-",
-      recognition : null
+      recognition : null,
+      supported : true
     }
   }
 
   componentDidMount() {
     this.hookShortcutListener();
     this.setupCommands();
-    this.setupRecognition();
+    try {
+      this.setupRecognition();
+    }
+    catch(err) {
+      this.setState({
+        supported : false,
+        status : "Voice Navigation not supported for this browser"
+      })
+    }
   }
   
   
@@ -37,16 +46,22 @@ class App extends React.Component {
   
 
   handleButtonClick = () => {
-    if (!this.state.active) {
+    let message;
+    if (!this.state.active && this.state.supported) {
       this.state.recognition.stop();
       this.state.recognition.start();
+      message = "Awaiting Command...";
+    }
+    else if (this.state.active && this.state.supported) {
+      this.state.recognition.stop();
+      message = "";
     }
     else {
-      this.state.recognition.stop();
+      message = "Voice navigation not supported for current Browser";
     }
     this.setState({
       active: !this.state.active,
-      status : "Awaiting Command...",
+      status : message,
       words : "-"
     });
     
@@ -73,7 +88,13 @@ class App extends React.Component {
     let allA = document.querySelectorAll('a');
 
     allA.forEach(a => {
-      if(!a.textContent.includes("   ") && a.textContent !== "") {
+      if(a.hasAttribute('title')) {
+        const command = a.title;
+        const action = 'link';
+        const directions = a.href;
+        commands[lang].push({command, action, directions});
+      }
+      else if (!a.textContent.includes("   ") && a.textContent !== "") {
         const command = a.textContent;
         const action = 'link';
         const directions = a.href;
@@ -84,8 +105,8 @@ class App extends React.Component {
   }
 
   setupRecognition() {
-    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
-    var SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList
+    var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    var SpeechGrammarList = window.SpeechGrammarList || window.webkitSpeechGrammarList;
     //var SpeechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent
 
     var lang = document.documentElement.lang;
@@ -120,7 +141,6 @@ class App extends React.Component {
 
       var stringSimilarity = require("string-similarity");
       var match = stringSimilarity.findBestMatch(recognizedText, colors);
-      console.log(match.bestMatchIndex);
 
       if (match.bestMatch.rating > 0.5) {
         window.location.href = commands[document.documentElement.lang][match.bestMatchIndex].directions;
