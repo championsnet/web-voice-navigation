@@ -172,6 +172,11 @@
 
 .widget-close-btn:after {
     transform: rotate(-45deg);
+    top: unset;
+    bottom: unset;
+    right: unset;
+    left: unset;
+    opacity: unset;
 }
 
 .widget-header .title {

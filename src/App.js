@@ -188,7 +188,7 @@ function Button(props) {
     <div className='voice-nav-container' title='Voice Recognition'>
         <button id='voice-nav' onClick={props.onButtonClick}>
             <span className='voice-nav-span'>
-                <img  className='voice-nav-img' width='40' height='40' alt='Voice Navigation Widget' src={props.navIcon}/>
+                <img  className='voice-nav-img' width='57' height='57' alt='Voice Navigation Widget' src={props.navIcon}/>
             </span>
         </button>
     </div>
