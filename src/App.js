@@ -111,7 +111,7 @@ class App extends React.Component {
 
     var lang = document.documentElement.lang;
     if (!lang) lang = "en";
-    let colors = commands[lang].map(({ command }) => command);
+    let colors = commands[lang].map(({ command }) => command.toLowerCase());
     console.log(colors);
     var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;'
 
@@ -138,16 +138,33 @@ class App extends React.Component {
       console.log('Confidence: ' + event.results[0][0].confidence + ' for word: ' + recognizedText);
 
       let message = "Command does not exist!";
-
+      
       var stringSimilarity = require("string-similarity");
-      var match = stringSimilarity.findBestMatch(recognizedText, colors);
+      var match = stringSimilarity.findBestMatch(recognizedText.toLowerCase(), colors);
+      let tries = 1;
+      console.log('1st Try Rating: ' + match.bestMatch.rating + ' for command: ' + match.bestMatch.target);
 
       if (match.bestMatch.rating > 0.5) {
-        window.location.href = commands[document.documentElement.lang][match.bestMatchIndex].directions;
+        //window.location.href = commands[document.documentElement.lang][match.bestMatchIndex].directions;
         message = "Command Recognized!"
         recognizedText = match.bestMatch.target;
       }
-      
+      else {
+        let bestMatch = match;
+        tries = 0;
+        for (let i = 1; i < event.results[0].length; i++) {
+          match = stringSimilarity.findBestMatch(event.results[0][i].transcript.toLowerCase(), colors);
+          if (match.bestMatch.rating > bestMatch.bestMatch.rating) bestMatch = match;
+          console.log('2nd Try Rating: ' + match.bestMatch.rating + ' for command: ' + match.bestMatch.target);
+          tries += 1;
+        }
+        if (bestMatch.bestMatch.rating > 0.25) {
+          //window.location.href = commands[document.documentElement.lang][bestMatch.bestMatchIndex].directions;
+          message = "Command Recognized!"
+          recognizedText = bestMatch.bestMatch.target;
+        }
+      }
+      console.log("Total number of commands tried: " + tries);
       this.setState({
         status: message,
         words: recognizedText

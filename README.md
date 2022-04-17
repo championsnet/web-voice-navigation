@@ -3,7 +3,7 @@ Voice navigation plugin for web implementation using Web Speech API
 
 0. Introduction
 
-v1.1.1 - 16/03/22
+v1.2.0 - 17/04/22
 This plugin implements Web Speech API in a React widget to navigate through a website using the user's voice. 
 Once inserted in the website a button appears typically in the bottom left of the screen. 
 Pressing the button, a panel opens and the system waits for input. 
@@ -36,6 +36,10 @@ https://github.com/championsnet/web-voice-navigation/tree/react
 
 ------------------------------------------
 4. Updates
+
+v1.2.0 - 17/03/22:
+- Recognition accuracy improved by searching for alternatives and comparing with known commands
+- Fixed a bug where lowercase and uppercase characters were considered different
 
 v1.1.1 - 16/03/22: 
 - Better link detection based on title property of a elements
