@@ -145,7 +145,7 @@ class App extends React.Component {
       console.log('1st Try Rating: ' + match.bestMatch.rating + ' for command: ' + match.bestMatch.target);
 
       if (match.bestMatch.rating > 0.5) {
-        //window.location.href = commands[document.documentElement.lang][match.bestMatchIndex].directions;
+        window.location.href = commands[document.documentElement.lang][match.bestMatchIndex].directions;
         message = "Command Recognized!"
         recognizedText = match.bestMatch.target;
       }
@@ -159,7 +159,7 @@ class App extends React.Component {
           tries += 1;
         }
         if (bestMatch.bestMatch.rating > 0.25) {
-          //window.location.href = commands[document.documentElement.lang][bestMatch.bestMatchIndex].directions;
+          window.location.href = commands[document.documentElement.lang][bestMatch.bestMatchIndex].directions;
           message = "Command Recognized!"
           recognizedText = bestMatch.bestMatch.target;
         }

@@ -26,7 +26,7 @@ Upload /build/static folder to your server and add these two lines of code to yo
 ------------------------------------------
 2. Commands
 
-Commands are detected by gathering all textContent of a elements. Voice input is compared to all known commands in order to more accurately predict what the user is trying to say.
+Commands are detected by gathering all textContent of ```<a>``` elements. Voice input is compared to all known commands in order to more accurately predict what the user is trying to say.
 
 ------------------------------------------
 3. Feedback
@@ -42,5 +42,5 @@ v1.2.0 - 17/03/22:
 - Fixed a bug where lowercase and uppercase characters were considered different
 
 v1.1.1 - 16/03/22: 
-- Better link detection based on title property of a elements
+- Better link detection based on title property of ```<a>``` elements
 - Now shows relevant message if browser is unsupported
