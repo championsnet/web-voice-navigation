@@ -1,0 +1,29 @@
+{
+    "en": {
+        "voiceNavigationMenu" : "Voice Navigation Menu",
+        "voiceNavigationWidget" : "Voice navigation widget",
+        "voiceRecognition" : "Voice recognition",
+        "awaitingCommand" : "Awaiting command...",
+        "listeningStopped" : "Listening stopped",
+        "commandRecognized" : "Command recognized!",
+        "noCommandRecognized" : "No command recognized",
+        "browserUnsupported" : "Browser is not supported",
+        "noWordsRecognized" : "No words recognized",
+        "reportProblem" : "Report a problem",
+        "visitGitHub" : "Visit GitHub repository"
+    }
+    ,
+    "el": {
+        "voiceNavigationMenu" : "Μενού Φωνητικής Πλοήγησης",
+        "voiceNavigationWidget" : "Εφαρμογή φωνητικής πλοήγησης",
+        "voiceRecognition" : "Φωνητιή αναγνώριση",
+        "awaitingCommand" : "Αναμονή για εντολή...",
+        "listeningStopped" : "Η ακρόαση έχει σταματήσει",
+        "commandRecognized" : "Η εντολή αναγνωρίστηκε!",
+        "noCommandRecognized" : "Δεν αναγνωρίστηκε εντολή",
+        "browserUnsupported" : "Ο περιηγητής δεν υποστηρίζεται",
+        "noWordsRecognized" : "Καμία λέξη δεν αναγνωρίστηκε",
+        "reportProblem" : "Αναφορά προβλήματος",
+        "visitGitHub" : "Επίσκεψη GitHub repository"
+    }
+  }

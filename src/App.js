@@ -3,6 +3,7 @@ import './App.css';
 import './Button.css';
 import './Panel.css';
 import commands from './commands.json';
+import translations from './translations.json';
 import icon from './voice-recognition-icon.png';
 
 class App extends React.Component {
@@ -10,8 +11,9 @@ class App extends React.Component {
   constructor(){
     super()
     this.state={
+      textsLang : "en",
       active : false,
-      status : "Awaiting Command...",
+      status : translations["en"]["awaitingCommand"],
       words : "-",
       recognition : null,
       supported : true
@@ -20,6 +22,10 @@ class App extends React.Component {
 
   componentDidMount() {
     this.hookShortcutListener();
+    const lang = this.setupTranslations();
+    this.setState({
+      textsLang : lang
+    })
     this.setupCommands();
     try {
       this.setupRecognition();
@@ -27,7 +33,7 @@ class App extends React.Component {
     catch(err) {
       this.setState({
         supported : false,
-        status : "Voice Navigation not supported for this browser"
+        status : translations[lang]["browserUnsupported"]
       })
     }
   }
@@ -35,8 +41,8 @@ class App extends React.Component {
   
   render() {
 
-    const button = <Button key="button" onButtonClick={this.handleButtonClick} navIcon={icon}/>;
-    const panel = this.state.active? <Panel key="panel" statusText={this.state.status} words={this.state.words} onCloseWidgetClick={this.handleButtonClick}/> : null;
+    const button = <Button key="button" onButtonClick={this.handleButtonClick} navIcon={icon} voiceNavigationWidget={this.translate("voiceNavigationWidget")} voiceRecognition={this.translate("voiceRecognition")}/>;
+    const panel = this.state.active? <Panel key="panel" statusText={this.state.status} words={this.state.words} onCloseWidgetClick={this.handleButtonClick} voiceNavigationMenu={this.translate("voiceNavigationMenu")} reportProblem={this.translate("reportProblem")} visitGitHub={this.translate("visitGitHub")}/> : null;
 
     return[
       button,
@@ -50,14 +56,14 @@ class App extends React.Component {
     if (!this.state.active && this.state.supported) {
       this.state.recognition.stop();
       this.state.recognition.start();
-      message = "Awaiting Command...";
+      message = this.translate("awaitingCommand");
     }
     else if (this.state.active && this.state.supported) {
       this.state.recognition.stop();
       message = "";
     }
     else {
-      message = "Voice navigation not supported for current Browser";
+      message = this.translate("browserUnsupported");
     }
     this.setState({
       active: !this.state.active,
@@ -74,6 +80,19 @@ class App extends React.Component {
         e.Handled = true;
       }  
     })
+  }
+
+  setupTranslations() {
+    var textsLang = document.documentElement.lang;
+    if (!textsLang) textsLang = "en";
+    if (!translations.hasOwnProperty(textsLang)) textsLang = "en";
+    return textsLang;
+  }
+
+  translate(textKey) {
+    let translation = translations[this.state.textsLang][textKey];
+    if (!translations[this.state.textsLang].hasOwnProperty(textKey)) translation = translations["en"][textKey];
+    return translation;
   }
 
   setupCommands() {
@@ -137,7 +156,7 @@ class App extends React.Component {
       recognizedText = event.results[0][0].transcript;
       console.log('Confidence: ' + event.results[0][0].confidence + ' for word: ' + recognizedText);
 
-      let message = "Command does not exist!";
+      let message = this.translate("noCommandRecognized");
       
       var stringSimilarity = require("string-similarity");
       var match = stringSimilarity.findBestMatch(recognizedText.toLowerCase(), colors);
@@ -146,7 +165,7 @@ class App extends React.Component {
 
       if (match.bestMatch.rating > 0.5) {
         window.location.href = commands[document.documentElement.lang][match.bestMatchIndex].directions;
-        message = "Command Recognized!"
+        message = this.translate("commandRecognized");
         recognizedText = match.bestMatch.target;
       }
       else {
@@ -160,7 +179,7 @@ class App extends React.Component {
         }
         if (bestMatch.bestMatch.rating > 0.25) {
           window.location.href = commands[document.documentElement.lang][bestMatch.bestMatchIndex].directions;
-          message = "Command Recognized!"
+          message = this.translate("commandRecognized");
           recognizedText = bestMatch.bestMatch.target;
         }
       }
@@ -177,7 +196,7 @@ class App extends React.Component {
     
     recog.onnomatch = (event) => {
       this.setState({
-        status: "No Words Recognized!"
+        status: this.translate("noWordsRecognized")
       });
     }
     
@@ -188,7 +207,7 @@ class App extends React.Component {
     recog.onend = (event) => {
       if (recognizedText !== '') return;
       this.setState({
-        status: "Listening Stopped"
+        status: this.translate("listeningStopped")
       });
     }
 
@@ -202,10 +221,10 @@ class App extends React.Component {
 
 function Button(props) {
   return(
-    <div className='voice-nav-container' title='Voice Recognition'>
+    <div className='voice-nav-container' title={props.voiceRecognition}>
         <button id='voice-nav' onClick={props.onButtonClick}>
             <span className='voice-nav-span'>
-                <img  className='voice-nav-img' width='57' height='57' alt='Voice Navigation Widget' src={props.navIcon}/>
+                <img  className='voice-nav-img' width='57' height='57' alt={props.voiceNavigationWidget} src={props.navIcon}/>
             </span>
         </button>
     </div>
@@ -222,7 +241,7 @@ function Panel(props) {
             <div className="widget-header__l">
               <div className="widget-header flex-box">
                 <div className="title">
-                  Voice Navigation Menu <span>(CTRL+I)</span>
+                  {props.voiceNavigationMenu} <span>(CTRL+I)</span>
                 </div>
               </div>
             </div>
@@ -248,8 +267,8 @@ function Panel(props) {
             <div className="row">
               <div className="col">
                 <div className="widget-footer-nav">
-                  <div className="widget-footer-nav__item"><a href="https://github.com/championsnet/web-voice-navigation/issues" tabIndex="0">Report a Problem</a></div>
-                  <div className="widget-footer-nav__item"><a href="https://github.com/championsnet/web-voice-navigation" tabIndex="0">Visit GitHub Repository</a></div>
+                  <div className="widget-footer-nav__item"><a href="https://github.com/championsnet/web-voice-navigation/issues" tabIndex="0">{props.reportProblem}</a></div>
+                  <div className="widget-footer-nav__item"><a href="https://github.com/championsnet/web-voice-navigation" tabIndex="0">{props.visitGitHub}</a></div>
                 </div>
               </div>
               <div className="col">
