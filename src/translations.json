@@ -16,7 +16,7 @@
     "el": {
         "voiceNavigationMenu" : "Μενού Φωνητικής Πλοήγησης",
         "voiceNavigationWidget" : "Εφαρμογή φωνητικής πλοήγησης",
-        "voiceRecognition" : "Φωνητιή αναγνώριση",
+        "voiceRecognition" : "Φωνητική αναγνώριση",
         "awaitingCommand" : "Αναμονή για εντολή...",
         "listeningStopped" : "Η ακρόαση έχει σταματήσει",
         "commandRecognized" : "Η εντολή αναγνωρίστηκε!",
@@ -25,5 +25,47 @@
         "noWordsRecognized" : "Καμία λέξη δεν αναγνωρίστηκε",
         "reportProblem" : "Αναφορά προβλήματος",
         "visitGitHub" : "Επίσκεψη GitHub repository"
+    }
+    ,
+    "pt": {
+        "voiceNavigationMenu" : "Menu de navegação por voz",
+        "voiceNavigationWidget" : "Widget de navegação por voz",
+        "voiceRecognition" : "Reconhecimento de voz",
+        "awaitingCommand" : "A aguardar comando...",
+        "listeningStopped" : "Audição interrompida",
+        "commandRecognized" : "Comando reconhecido!",
+        "noCommandRecognized" : "Nenhum comando reconhecido",
+        "browserUnsupported" : "Navegador atual não suportado",
+        "noWordsRecognized" : "Nenhuma palavra reconhecida",
+        "reportProblem" : "Reportar um problema",
+        "visitGitHub" : "Visite o repositório do GitHub"
+    }
+    ,
+    "sl": {
+        "voiceNavigationMenu" : "Meni za glasovno krmarjenje",
+        "voiceNavigationWidget" : "Pripomoček za glasovno krmarjenje",
+        "voiceRecognition" : "Prepoznavanje glasu",
+        "awaitingCommand" : "Čakam ukaz...",
+        "listeningStopped" : "Poslušanje ustavljeno",
+        "commandRecognized" : "Ukaz prepoznan!",
+        "noCommandRecognized" : "Ukaz ni prepoznan",
+        "browserUnsupported" : "Trenutni brskalnik ni podprt",
+        "noWordsRecognized" : "Ni prepoznanih besed",
+        "reportProblem" : "Prijavite težavo",
+        "visitGitHub" : "Obiščite skladišče GitHub"
+    }
+    ,
+    "es": {
+        "voiceNavigationMenu" : "Menú de navegación por voz",
+        "voiceNavigationWidget" : "Voice navigation widget",
+        "voiceRecognition" : "Voice recognition",
+        "awaitingCommand" : "Esperando orden o instrucción...",
+        "listeningStopped" : "Audio/escucha detenida",
+        "commandRecognized" : "Orden o instrucción reconocido!",
+        "noCommandRecognized" : "Sin orden o instrucción reconocida",
+        "browserUnsupported" : "El navegador actual no es compatible",
+        "noWordsRecognized" : "No words recognized",
+        "reportProblem" : "Report a problem",
+        "visitGitHub" : "Visit GitHub repository"
     }
   }
