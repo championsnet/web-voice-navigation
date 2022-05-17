@@ -57,15 +57,15 @@
     ,
     "es": {
         "voiceNavigationMenu" : "Menú de navegación por voz",
-        "voiceNavigationWidget" : "Voice navigation widget",
-        "voiceRecognition" : "Voice recognition",
+        "voiceNavigationWidget" : "Widget de navegación por voz",
+        "voiceRecognition" : "Reconocimiento de voz",
         "awaitingCommand" : "Esperando orden o instrucción...",
         "listeningStopped" : "Audio/escucha detenida",
         "commandRecognized" : "Orden o instrucción reconocido!",
         "noCommandRecognized" : "Sin orden o instrucción reconocida",
         "browserUnsupported" : "El navegador actual no es compatible",
-        "noWordsRecognized" : "No words recognized",
-        "reportProblem" : "Report a problem",
-        "visitGitHub" : "Visit GitHub repository"
+        "noWordsRecognized" : "No se reconocen palabras",
+        "reportProblem" : "Informar de un problema",
+        "visitGitHub" : "Visite el repositorio de GitHub"
     }
   }

@@ -84,7 +84,7 @@ class App extends React.Component {
 
   setupTranslations() {
     var textsLang = document.documentElement.lang;
-    if (!textsLang) textsLang = "en";
+    textsLang = this.correctLanguage(textsLang);
     if (!translations.hasOwnProperty(textsLang)) textsLang = "en";
     return textsLang;
   }
@@ -95,12 +95,18 @@ class App extends React.Component {
     return translation;
   }
 
+  correctLanguage(language) {
+    if (!language) language = "en";
+    if (language === "es-ES") language = "es";
+    return language;
+  }
+
   setupCommands() {
     if (typeof commands == 'undefined') commands = {};
 
     var lang = document.documentElement.lang;
-    if (!lang) lang = "en";
-
+    lang = this.correctLanguage(lang);
+    console.log(lang);
     if (!commands.hasOwnProperty(lang)) {
       commands[lang] = [];
     }
@@ -129,7 +135,8 @@ class App extends React.Component {
     //var SpeechRecognitionEvent = window.SpeechRecognitionEvent || window.webkitSpeechRecognitionEvent
 
     var lang = document.documentElement.lang;
-    if (!lang) lang = "en";
+    lang = this.correctLanguage(lang);
+    
     let colors = commands[lang].map(({ command }) => command.toLowerCase());
     console.log(colors);
     var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;'
